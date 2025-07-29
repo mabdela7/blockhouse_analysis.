@@ -3,139 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blockhouse Analysis Results</title>
+    <title>Blockhouse Analysis Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-light: #f4f7f6;
+            --text-dark: #333;
+            --text-light: #f9f9f9;
+            --border-color: #ddd;
+            --shadow-light: rgba(0, 0, 0, 0.1 );
+        }
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f7f9fa;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px var(--shadow-light);
+        }
+        .header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 2.5em;
         }
         .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            padding: 32px 24px 24px 24px;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow-light);
         }
-        h1 {
-            color: #1a237e;
-            margin-bottom: 0.5em;
+        section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
         }
-        .desc {
-            color: #444;
-            margin-bottom: 2em;
+        section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
-        .results-list {
-            margin: 2em 0;
-            padding: 0;
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-top: 0;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        ul {
             list-style: none;
+            padding: 0;
         }
-        .results-list li {
-            margin-bottom: 1.2em;
-            font-size: 1.1em;
+        ul li {
+            margin-bottom: 10px;
         }
         a {
-            color: #1976d2;
+            color: var(--secondary-color);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         a:hover {
+            color: var(--accent-color);
             text-decoration: underline;
         }
-        .footer {
-            margin-top: 3em;
-            color: #888;
-            font-size: 0.95em;
-            text-align: center;
+        .project-description p {
+            margin-bottom: 15px;
         }
-        .plot-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+        .project-description ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        .plot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             margin-top: 20px;
         }
-        .plot-item {
-            text-align: center;
-            border: 1px solid #eee;
-            padding: 10px;
+        .plot-card {
+            background-color: #f9f9f9;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            background-color: #fff;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
         }
-        .plot-item img {
+        .plot-card:hover {
+            transform: translateY(-5px);
+        }
+        .plot-card img {
             max-width: 100%;
             height: auto;
-            border-radius: 4px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
-        .plot-item p {
-            margin-top: 10px;
+        .plot-card p {
             font-size: 0.9em;
             color: #555;
+            margin: 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9em;
+            border-top: 1px solid var(--border-color);
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .plot-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>Blockhouse Analysis Project</h1>
+    </div>
     <div class="container">
-        <h1>Blockhouse Analysis Results</h1>
-        <div class="desc">
-            <p><strong>Welcome to the Blockhouse Market Impact & Optimal Allocation Project!</strong></p>
-            <ul style="margin-top: 1em; margin-bottom: 1em;">
+        <section class="project-description">
+            <h2>Project Overview</h2>
+            <p>Welcome to the <strong>Blockhouse Market Impact & Optimal Allocation Project</strong>! This initiative focuses on advanced quantitative analysis to model market impact and optimize trading strategies. Our goal is to minimize trading costs by understanding and predicting the temporary price impact of large orders and formulating an optimal execution algorithm.</p>
+            <p>Key aspects of this project include:</p>
+            <ul>
                 <li><strong>Goal:</strong> Minimize trading impact by modeling and optimizing order execution across multiple stocks and time periods.</li>
-                <li><strong>Data:</strong> Real and synthetic order book data for 3 stocks, 1-minute intervals.</li>
-                <li><strong>Deliverables:</strong> Interactive analysis report, professional plots, and detailed written explanations.</li>
+                <li><strong>Data:</strong> Utilizes real and synthetic order book data for 3 stocks (CRWV, FROG, SOUN) at 1-minute intervals.</li>
+                <li><strong>Deliverables:</strong> Provides an interactive analysis report, professional plots, and detailed written explanations in PDF format.</li>
             </ul>
             <p>All results, code, and documentation are provided below for easy access and review.</p>
-        </div>
-        <ul class="results-list">
-            <li>
-                <strong>Full Analysis Report (HTML):</strong><br>
-                <a href="impact_modeling_analysis_output.html" target="_blank">View Analysis Report</a>
-            </li>
-            <li>
-                <strong>Generated Plots & Visualizations:</strong><br>
-                <div class="plot-container">
-                    <div class="plot-item">
-                        <img src="output/CRWV_impact_analysis.png" alt="CRWV Impact Analysis">
-                        <p>CRWV Impact Analysis</p>
-                    </div>
-                    <div class="plot-item">
-                        <img src="output/FROG_impact_analysis.png" alt="FROG Impact Analysis">
-                        <p>FROG Impact Analysis</p>
-                    </div>
-                    <div class="plot-item">
-                        <img src="output/SOUN_impact_analysis.png" alt="SOUN Impact Analysis">
-                        <p>SOUN Impact Analysis</p>
-                    </div>
-                    <div class="plot-item">
-                        <img src="output/optimal_allocation_example.png" alt="Optimal Allocation Example">
-                        <p>Optimal Allocation Example</p>
-                    </div>
-                </div>
-            </li>
-        </ul>
-
-        <div style="margin-top:2.5em; margin-bottom:1em; padding:1.5em; background:#e3f2fd; border-radius:8px;">
-            <h2 style="margin-top:0; color:#1565c0;">Supplementary Documents</h2>
-            <ul class="results-list">
+        </section>
+        <section class="main-report">
+            <h2>Main Analysis Report</h2>
+            <ul>
                 <li>
-                    <a href="Modeling_the_Temporary_Impact_Function_g_t_x.pdf" target="_blank"><strong>Modeling the Temporary Impact Function g_t(x)</strong> (PDF)</a><br>
-                    <span style="color:#444; font-size:0.98em;">Detailed explanation of the impact function modeling, with data-driven insights and visualizations.</span>
-                </li>
-                <li>
-                    <a href="Mathematical_Framework_for_Optimal_Order_Allocation.pdf" target="_blank"><strong>Mathematical Framework for Optimal Order Allocation</strong> (PDF)</a><br>
-                    <span style="color:#444; font-size:0.98em;">Mathematical formulation and solution approach for optimal execution across trading periods.</span>
-                </li>
-                <li>
-                    <a href="Modeling_Temporary_Impact_and_Optimal_Order_Allocation.pdf" target="_blank"><strong>Modeling Temporary Impact and Optimal Order Allocation (Presentation)</strong> (PDF)</a><br>
-                    <span style="color:#444; font-size:0.98em;">A concise overview of the project, key findings, and methodologies.</span>
+                    <strong>Full Analysis Report (HTML):</strong>
+                    <a href="impact_modeling_analysis_output.html" target="_blank">View Detailed Analysis Report</a>
                 </li>
             </ul>
-        </div>
-        <div class="footer">
-            &copy; 2025 Blockhouse Analysis &mdash; Professional Implementation
-        </div>
+        </section>
+        <section class="plots-section">
+            <h2>Generated Plots & Visualizations</h2>
+            <div class="plot-grid">
+                <div class="plot-card">
+                    <img src="output/CRWV_impact_analysis.png" alt="CRWV Impact Analysis">
+                    <p>CRWV Temporary Impact Analysis</p>
+                </div>
+                <div class="plot-card">
+                    <img src="output/FROG_impact_analysis.png" alt="FROG Impact Analysis">
+                    <p>FROG Temporary Impact Analysis</p>
+                </div>
+                <div class="plot-card">
+                    <img src="output/SOUN_impact_analysis.png" alt="SOUN Impact Analysis">
+                    <p>SOUN Temporary Impact Analysis</p>
+                </div>
+                <div class="plot-card">
+                    <img src="output/optimal_allocation_example.png" alt="Optimal Allocation Example">
+                    <p>Optimal Order Allocation Example</p>
+                </div>
+            </div>
+        </section>
+        <section class="supplementary-docs">
+            <h2>Supplementary Documents</h2>
+            <ul>
+                <li>
+                    <a href="Modeling_the_Temporary_Impact_Function_g_t_x.pdf" target="_blank"><strong>Modeling the Temporary Impact Function g_t(x)</strong> (PDF)</a>
+                    <span>Detailed explanation of the impact function modeling, with data-driven insights and visualizations.</span>
+                    <br>
+                    <iframe src="Modeling_the_Temporary_Impact_Function_g_t_x.pdf" width="100%" height="400px" style="border:1px solid #ddd; margin-top:10px;"></iframe>
+                </li>
+                <li>
+                    <a href="Mathematical_Framework_for_Optimal_Order_Allocation.pdf" target="_blank"><strong>Mathematical Framework for Optimal Order Allocation</strong> (PDF)</a>
+                    <span>Mathematical formulation and solution approach for optimal execution across trading periods.</span>
+                    <br>
+                    <iframe src="Mathematical_Framework_for_Optimal_Order_Allocation.pdf" width="100%" height="400px" style="border:1px solid #ddd; margin-top:10px;"></iframe>
+                </li>
+                <li>
+                    <a href="Modeling_Temporary_Impact_and_Optimal_Order_Allocation.pdf" target="_blank"><strong>Modeling Temporary Impact and Optimal Order Allocation (Presentation)</strong> (PDF)</a>
+                    <span>A concise overview of the project, key findings, and methodologies.</span>
+                    <br>
+                    <iframe src="Modeling_Temporary_Impact_and_Optimal_Order_Allocation.pdf" width="100%" height="400px" style="border:1px solid #ddd; margin-top:10px;"></iframe>
+                </li>
+            </ul>
+        </section>
     </div>
-</body>
-</html>
-
+    <div class="footer">
+        &copy; 2025 Blockhouse Analysis &mdash; Professional Implementation
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Blockhouse Analysis Project page loaded successfully.');
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
