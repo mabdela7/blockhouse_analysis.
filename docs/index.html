@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Language" content="en">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blockhouse Analysis Project</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -23,6 +24,16 @@
             background-color: var(--background-light);
             color: var(--text-dark);
             line-height: 1.6;
+            transition: background 0.3s;
+        }
+        .lang-warning {
+            display: none;
+            color: var(--accent-color);
+            background: #fff3f3;
+            border: 1px solid var(--accent-color);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
         .header {
             background-color: var(--primary-color);
@@ -143,6 +154,9 @@
     <div class="header">
         <h1>Blockhouse Analysis Project</h1>
     </div>
+    <div class="lang-warning" id="langWarning">
+        Non-English content detected. Please use only English for this project.
+    </div>
     <div class="container">
         <section class="project-description">
             <h2>Project Overview</h2>
@@ -215,6 +229,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Blockhouse Analysis Project page loaded successfully.');
+            // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -223,4 +238,30 @@
                     });
                 });
             });
+            // Language check: show warning if non-English detected
+            const bodyText = document.body.innerText;
+            const nonEnglishPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+            if (nonEnglishPattern.test(bodyText)) {
+                document.getElementById('langWarning').style.display = 'block';
+            }
+            // Theme toggle example (for extra CSS interactivity)
+            const themeBtn = document.createElement('button');
+            themeBtn.textContent = 'Toggle Light/Dark Theme';
+            themeBtn.style.position = 'fixed';
+            themeBtn.style.bottom = '30px';
+            themeBtn.style.right = '30px';
+            themeBtn.style.padding = '10px 18px';
+            themeBtn.style.background = 'var(--secondary-color)';
+            themeBtn.style.color = '#fff';
+            themeBtn.style.border = 'none';
+            themeBtn.style.borderRadius = '5px';
+            themeBtn.style.cursor = 'pointer';
+            themeBtn.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+            document.body.appendChild(themeBtn);
+            let darkMode = false;
+            themeBtn.onclick = function() {
+                darkMode = !darkMode;
+                document.body.style.backgroundColor = darkMode ? '#222' : 'var(--background-light)';
+                document.body.style.color = darkMode ? '#f9f9f9' : 'var(--text-dark)';
+            };
         });
